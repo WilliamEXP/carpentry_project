@@ -1,4 +1,6 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
+
 include 'conn.php';
 $nombre = $_POST["nombre"];
 $cantidad = $_POST["cantidad"];
@@ -13,6 +15,9 @@ if (!$resultado)
 }
 else
 {
-echo 'Agregado';  
+echo '<script>
+window.history.go(-1);
+alert("Agregado")
+</script>';    
 }
-mysqli_close($conexion);
+mysqli_close($conexion);?>

@@ -1,3 +1,31 @@
+<?php
+include = "../conexiones/insert_producto"?>
+<?php
+include 'conn.php';
+$nombre = $_POST["nombre"];
+$cantidad = $_POST["cantidad"];
+$precio = $_POST["precio_sugerido"];
+$tipo = $_POST["tipo"];
+
+$insertar = "INSERT INTO producto (nombre, tipo,precio, cantidad) VALUES ('$nombre','$tipo','$precio', '$cantidad')";
+$resultado = mysqli_query($conexion, $insertar);
+if (!$resultado)
+{
+    echo 'Error';
+}
+else
+{
+echo '<script>
+swal({
+    title: "Notificación" ,
+    text: "Producto Agregado" ,
+    icon: "success",
+    button: true
+  });
+//window.history.go(-1);
+</script>';    
+}
+mysqli_close($conexion);?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -209,7 +237,9 @@
 											</div>
 										</div>
 
-									</form>
+                  </form>
+            
+                  
 								</div>
 							</div>
 						</div>
@@ -262,6 +292,7 @@
 	<!-- starrr -->
 	<script src="../vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
+  <script src="../build/js/custom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </body></html>
