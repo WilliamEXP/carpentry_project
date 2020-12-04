@@ -157,20 +157,20 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="../conexiones/insert_producto.php" method="POST">
 
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id_venta">ID Producto <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="Number" id="id_venta" required="required" class="form-control ">
+												<input type="Number" id="id_producto" required="required" class="form-control ">
 											</div>
 										</div>
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id_articulo">Nombre <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="id_articulo" required="required" class="form-control ">
+												<input type="text" id="nombre" required="required" class="form-control "name ="nombre">
 											</div>
 										</div>
 										<div class="item form-group">
@@ -190,7 +190,7 @@
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="articulo">Tipo <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<select id="articulo" required="required" class="form-control ">
+												<select id="tipo" required="required" name="tipo" class="form-control ">
 												<option value="" disabled selected>Seleccionar</option>
                    								<option>Silla</option>
                     							<option>Ropero</option>
