@@ -199,8 +199,8 @@
                           <td><?php echo $mostrar[3]?></td>
                           <td><?php echo $mostrar[4]?></td>
                           <td aling = "center"><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar" onclick ="agregarFrmActualizar('<?php echo $mostrar[0]?>');">
-                          <span class = "fa fa-pencil-square-o" ></span></span></td>
-                          <td style = "text-aling: center;"><span class="btn btn-round btn-danger btn-sm">
+                          <span class = "fa fa-pencil-square-o"  ></span></span></td>
+                          <td style = "text-aling: center;"><span class="btn btn-round btn-danger btn-sm" data-toggle="modal" data-target="#eliminar">
                           <span class = "fa fa-trash"></span></span></td>
                         </tr>
                         <?php } ?>
@@ -281,6 +281,29 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-warning id="btnactualizar">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+       
+<!-- Modal de ELIMINAR -->
+<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¿Seguro?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div>Se eliminará por completo.</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger">Eliminar</button>
       </div>
     </div>
   </div>
