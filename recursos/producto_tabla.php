@@ -28,6 +28,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+
   </head>
 
   <body class="nav-md">
@@ -192,12 +193,12 @@
                         while($mostrar=mysqli_fetch_array($result)){
                           ?>
                         <tr>
-                          <td valing = "middle"><?php echo $mostrar[0]?></td>
+                          <td><?php echo $mostrar[0]?></td>
                           <td><?php echo $mostrar[1]?></td>
                           <td><?php echo $mostrar[2]?></td>
                           <td><?php echo $mostrar[3]?></td>
                           <td><?php echo $mostrar[4]?></td>
-                          <td aling = "center"><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar">
+                          <td aling = "center"><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar" onclick ="agregarFrmActualizar('<?php echo $mostrar[0]?>');">
                           <span class = "fa fa-pencil-square-o" ></span></span></td>
                           <td style = "text-aling: center;"><span class="btn btn-round btn-danger btn-sm">
                           <span class = "fa fa-trash"></span></span></td>
@@ -222,17 +223,64 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Datos</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+<form id="edit_datos" data-parsley-validate class="form-horizontal form-label-center" action="../conexiones/insert_producto.php" method="POST">
+
+<div class="item form-group">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">ID Producto 
+  </label>
+  <div class="col-md-6 col-sm-6 ">
+    <input type="Number" name ="id_producto" id="id_producto" class="form-control ">
+  </div>
+</div>
+<div class="item form-group">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">Nombre 
+  </label>
+  <div class="col-md-6 col-sm-6 ">
+    <input type="text" id="nombre"  class="form-control "name ="nombre">
+  </div>
+</div>
+<div class="item form-group">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">Cantidad 
+  </label>
+  <div class="col-md-6 col-sm-6 ">
+    <input type="Number" min="1" pattern="^[0-9]+" id="cantidad" name="cantidad" class="form-control">
+  </div>
+</div>
+<div class="item form-group">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">Precio sugerido</label>
+  <div class="col-md-6 col-sm-6 ">
+    <input id="precio" class="form-control" type="number" name="precio">
+  </div>
+</div>
+<div class="item form-group">
+  <label class="col-form-label col-md-3 col-sm-3 label-align" >Tipo 
+  </label>
+  <div class="col-md-6 col-sm-6 ">
+    <select id="tipo" name="tipo" id="tipo" class="form-control ">
+    <option value="" disabled selected>Seleccionar</option>
+               <option>Silla</option>
+              <option>Ropero</option>
+              <option>Banquillo</option>
+              <option>Mesa</option>
+              <option>E</option>
+            </select>
+  </div>
+</div>
+<div class="ln_solid"></div>
+<div class="item form-group">
+</div>
+
+</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-warning id="btnactualizar">Actualizar</button>
       </div>
     </div>
   </div>
@@ -250,6 +298,29 @@
         <!-- /footer content -->
       </div>
     </div>
+<!-- añadir datos -->
+<script>
+  function agregarFrmActualizar(id_producto){
+    $.ajax({
+      type:"POST",
+      data:"id_producto="+ id_producto,
+      url: "../conexiones/obtenDatos.php",
+      success:function(r){
+        datos=jQuery.parseJSON(r);
+        $('#id_producto').val(datos['id_producto']);
+        $('#nombre').val(datos['nombre']);
+        $('#cantidad').val(datos['cantidad']);
+        $('#precio').val(datos['precio']);
+        $('#tipo').val(datos['tipo']);
+      }
+    });
+  }
+</script>
+
+
+
+
+
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -277,7 +348,7 @@
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    <!-- jQuery library -->
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
