@@ -1,7 +1,5 @@
-<?php
-include = "../conexiones/insert_producto"?>
-<?php
-include 'conn.php';
+<!-- <?php
+/* include '../conexiones/conn.php';
 $nombre = $_POST["nombre"];
 $cantidad = $_POST["cantidad"];
 $precio = $_POST["precio_sugerido"];
@@ -16,16 +14,15 @@ if (!$resultado)
 else
 {
 echo '<script>
-swal({
-    title: "Notificación" ,
-    text: "Producto Agregado" ,
-    icon: "success",
-    button: true
-  });
-//window.history.go(-1);
-</script>';    
+Swal.fire(
+  'Good job!',
+  'You clicked the button!',
+  'success'
+);
+</script>' ;   
 }
-mysqli_close($conexion);?>
+mysqli_close($conexion); */
+?> -->
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -94,7 +91,7 @@ mysqli_close($conexion);?>
                   <li><a><i class="fa fa-archive"></i> Productos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="producto_form.html">Agregar</a></li>
-                      <li><a href="producto_tabla.html">Administrar</a></li>
+                      <li><a href="producto_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-users"></i> Clientes <span class="fa fa-chevron-down"></span></a>

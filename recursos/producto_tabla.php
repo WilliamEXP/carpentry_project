@@ -66,7 +66,7 @@
                   <li><a><i class="fa fa-archive"></i> Productos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="producto_form.html">Agregar</a></li>
-                      <li><a href="producto_tabla.html">Administrar</a></li>
+                      <li><a href="producto_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-users"></i> Clientes <span class="fa fa-chevron-down"></span></a>
@@ -168,7 +168,7 @@
                       <div class="row">
                           <div class="col-sm-12">
                             <div class="card-box table-responsive ">
-                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                    <table id="datatable" class="table table-striped projects" style="width:100%">
                       <thead>
                         <tr>
                           <th>ID producto</th>
@@ -176,26 +176,36 @@
                           <th>Cantidad</th>
                           <th>Precio</th>
                           <th>Tipo</th>
+                          <th>Editar</th>
+                          <th>Eliminar</th>
                         </tr>
                       </thead>
+                      
                       <tbody>
+                        <?php
+                        /* $conexion = mysqli_connect("localhost", "root","", "carpentry_proyect");
+                        $sql="SELECT id_producto, nombre, cantidad, precio, tipo FROM producto";
+                        $result=mysqli_query($conexion,$sql); */
+                        $conexion = mysqli_connect("localhost", "root","", "carpentry_proyect");
+                        $sql="SELECT id_producto, nombre, cantidad, precio, tipo FROM producto";
+                        $result=mysqli_query($conexion,$sql);
+                        while($mostrar=mysqli_fetch_array($result)){
+                          ?>
                         <tr>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          
+                          <td valing = "middle"><?php echo $mostrar[0]?></td>
+                          <td><?php echo $mostrar[1]?></td>
+                          <td><?php echo $mostrar[2]?></td>
+                          <td><?php echo $mostrar[3]?></td>
+                          <td><?php echo $mostrar[4]?></td>
+                          <td aling = "center"><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar">
+                          <span class = "fa fa-pencil-square-o" ></span></span></td>
+                          <td style = "text-aling: center;"><span class="btn btn-round btn-danger btn-sm">
+                          <span class = "fa fa-trash"></span></span></td>
                         </tr>
-                        <tr>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          
-                        </tr>            
+                        <?php } ?>
+                            
                       </tbody>
+                    
                     </table>
                   </div>
                   </div>
@@ -205,7 +215,28 @@
               </div>
 
 
-
+<!-- Button trigger modal -->
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
               
         <!-- /page content -->
 
