@@ -298,7 +298,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      
+
       <div class="modal-body">
       <div>Se eliminará por completo.</div>
       </div>
@@ -309,7 +309,8 @@
     </div>
   </div>
 </div>
-              
+
+       <div></div>       
         <!-- /page content -->
 
         <!-- footer content -->
