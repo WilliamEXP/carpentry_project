@@ -72,7 +72,7 @@
                   <li><a><i class="fa fa-users"></i> Clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="cliente_form.html">Agregar</a></li>
-                      <li><a href="media_gallery.html">Administrar</a></li>
+                      <li><a href="cliente_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
@@ -165,19 +165,19 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form  class="form-horizontal form-label-left">
+                    <form  class="form-horizontal form-label-left" action="../conexiones/insert_cliente.php" method="POST">
 
                       <div class="form-group row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Nombre</label>
                         <div class="col-md-6 col-sm-6">
-                          <input type="text" class="form-control" placeholder="Nombre">
+                          <input type="text" class="form-control" name="nombre" id="nombre">
                           <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Apellido</label>
                         <div class="col-md-6 col-sm-6">
-                          <input type="text" class="form-control" placeholder="Apellido">
+                          <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido">
                           <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>
@@ -187,30 +187,30 @@
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Género</label>
                           <div class="control-label col-md-6 col-sm-6  form-group has-feedback">
                               <label class="control-labelcol-md-6 col-sm-6  form-group has-feedback">Masculino:
-                            <input type="radio" class="flat" name="gender" id="genderM" value="Masculino" checked="" required /> </label>
+                            <input type="radio" class="flat" name="gender" id="gender" value="Masculino" checked="" required /> </label>
                             <label class="col-md-6 col-sm-6  form-group has-feedback">Femenino:
-                            <input type="radio" class="flat" name="gender" id="genderF" value="Femenino" /></label>
+                            <input type="radio" class="flat" name="gender" id="gender" value="Femenino" /></label>
                           </div>
                         </div>
                       
                       <div class="form-group row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Direccion</label>
                         <div class="col-md-6 col-sm-6">
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="direccion" id="direccion">
                           <span class="fa fa-home form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Telefono</label>
                         <div class="col-md-6 col-sm-6">
-                          <input type="text" class="form-control" placeholder="Télefono" data-inputmask="'mask' : '999 999 9999'">
+                          <input type="text" class="form-control" placeholder="Télefono" data-inputmask="'mask' : '999 999 9999'" name="telefono" id="telefono">
                           <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="col-form-label col-md-3 col-sm-3 label-align">Localidad</label>
                         <div class="col-md-6 col-sm-6">
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="localidad" id="localidad">
                           <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>

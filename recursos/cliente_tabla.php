@@ -28,7 +28,6 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
-
   </head>
 
   <body class="nav-md">
@@ -147,7 +146,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Productos<small></small></h3>
+                <h3>Empleados<small></small></h3>
               </div>
 
               <div class="title_right">
@@ -161,48 +160,53 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Tabla <small>Productos</small></h2>
+                    <h2>Tabla <small>Clientes</small></h2>
+                    
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                       <div class="row">
                           <div class="col-sm-12">
                             <div class="card-box table-responsive ">
-                    <table id="datatable" class="table table-striped projects" style="width:100%">
+                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                          <th>ID producto</th>
+                        <th>ID Cliente</th>
                           <th>Nombre</th>
-                          <th>Cantidad</th>
-                          <th>Precio</th>
-                          <th>Tipo</th>
+                          <th>Apellido</th>
+                          <th>Género</th>
+                          <th>Dirección</th>
+                          <th>Localidad</th>
+                          <th>Telefono</th>
                           <th>Editar</th>
                           <th>Eliminar</th>
                         </tr>
                       </thead>
-                      
                       <tbody>
-                        <?php
+                      <?php
                         $conexion = mysqli_connect("localhost", "root","", "carpentry_proyect");
-                        $sql="SELECT id_producto, nombre, cantidad, precio, tipo FROM producto";
+                        $sql="SELECT id_cliente, nombre, apellido, genero, direccion, localidad, telefono FROM clientes";
                         $result=mysqli_query($conexion,$sql);
                         while($mostrar=mysqli_fetch_array($result)){
                           ?>
                         <tr>
-                          <td><?php echo $mostrar[0]?></td>
-                          <td><?php echo $mostrar[1]?></td>
-                          <td><?php echo $mostrar[2]?></td>
-                          <td><?php echo $mostrar[3]?></td>
-                          <td><?php echo $mostrar[4]?></td>
-                          <td aling = "center"><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar" onclick ="agregarFrmActualizar('<?php echo $mostrar[0]?>');">
+                          <td><?php echo "$mostrar[0]"?></td>
+                          <td><?php echo "$mostrar[1]"?></td>
+                          <td><?php echo "$mostrar[2]"?></td>
+                          <td><?php echo "$mostrar[3]"?></td>
+                          <td><?php echo "$mostrar[4]"?></td>
+                          <td><?php echo "$mostrar[5]"?></td>
+                          <td><?php echo "$mostrar[6]"?></td>
+
+                          <td><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar">
                           <span class = "fa fa-pencil-square-o"  ></span></span></td>
-                          <td style = "text-aling: center;"><span class="btn btn-round btn-danger btn-sm" data-toggle="modal" data-target="#eliminar">
+
+                          <td><span class="btn btn-round btn-danger" data-toggle="modal" data-target="#eliminar">
                           <span class = "fa fa-trash"></span></span></td>
+
                         </tr>
-                        <?php } ?>
-                            
+                        <?php } ?>         
                       </tbody>
-                    
                     </table>
                   </div>
                   </div>
@@ -210,81 +214,84 @@
             </div>
                 </div>
               </div>
+<!-- aqui va la advertencia para modificar -->
 
-
-<!-- Button trigger modal -->
 <!-- Button trigger modal -->
 <!-- Modal -->
 <div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Actualizar Datos</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-<form id="edit_datos" data-parsley-validate class="form-horizontal form-label-center" action="../conexiones/insert_producto.php" method="POST">
+      <form  class="form-horizontal form-label-left" action="../conexiones/insert_cliente.php" method="POST">
 
-<div class="item form-group">
-  <label class="col-form-label col-md-3 col-sm-3 label-align">ID Producto 
-  </label>
-  <div class="col-md-6 col-sm-6 ">
-    <input type="Number" name ="id_producto" id="id_producto" class="form-control ">
+<div class="form-group row">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">Nombre</label>
+  <div class="col-md-6 col-sm-6">
+    <input type="text" class="form-control" name="nombre" id="nombre">
+    <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
-<div class="item form-group">
-  <label class="col-form-label col-md-3 col-sm-3 label-align">Nombre 
-  </label>
-  <div class="col-md-6 col-sm-6 ">
-    <input type="text" id="nombre"  class="form-control "name ="nombre">
+<div class="form-group row">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">Apellido</label>
+  <div class="col-md-6 col-sm-6">
+    <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido">
+    <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
-<div class="item form-group">
-  <label class="col-form-label col-md-3 col-sm-3 label-align">Cantidad 
-  </label>
-  <div class="col-md-6 col-sm-6 ">
-    <input type="Number" min="1" pattern="^[0-9]+" id="cantidad" name="cantidad" class="form-control">
+
+
+  <div class="form-group row">
+      <label class="col-form-label col-md-3 col-sm-3 label-align">Género</label>
+    <div class="control-label col-md-6 col-sm-6  form-group has-feedback">
+        <label class="control-labelcol-md-6 col-sm-6  form-group has-feedback">Masculino:
+      <input type="radio" class="flat" name="gender" id="gender" value="Masculino" checked="" required /> </label>
+      <label class="col-md-6 col-sm-6  form-group has-feedback">Femenino:
+      <input type="radio" class="flat" name="gender" id="gender" value="Femenino" /></label>
+    </div>
+  </div>
+
+<div class="form-group row">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">Direccion</label>
+  <div class="col-md-6 col-sm-6">
+    <input type="text" class="form-control" name="direccion" id="direccion">
+    <span class="fa fa-home form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
-<div class="item form-group">
-  <label class="col-form-label col-md-3 col-sm-3 label-align">Precio sugerido</label>
-  <div class="col-md-6 col-sm-6 ">
-    <input id="precio" class="form-control" type="number" name="precio">
+<div class="form-group row">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">Telefono</label>
+  <div class="col-md-6 col-sm-6">
+    <input type="text" class="form-control" placeholder="Télefono" data-inputmask="'mask' : '999 999 9999'" name="telefono" id="telefono">
+    <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
-<div class="item form-group">
-  <label class="col-form-label col-md-3 col-sm-3 label-align" >Tipo 
-  </label>
-  <div class="col-md-6 col-sm-6 ">
-    <select id="tipo" name="tipo" id="tipo" class="form-control ">
-    <option value="" disabled selected>Seleccionar</option>
-               <option>Silla</option>
-              <option>Ropero</option>
-              <option>Banquillo</option>
-              <option>Mesa</option>
-              <option>E</option>
-            </select>
+<div class="form-group row">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">Localidad</label>
+  <div class="col-md-6 col-sm-6">
+    <input type="text" class="form-control" name="localidad" id="localidad">
+    <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
 <div class="ln_solid"></div>
-<div class="item form-group">
-</div>
-
 </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-warning id="btnactualizar">Actualizar</button>
+        <button type="button" class="btn btn-primary">Guardar Cambios</button>
       </div>
     </div>
   </div>
 </div>
 
 
-       
-<!-- Modal de ELIMINAR -->
+
+<!-- Button trigger modal -->
+<!-- Modal -->
 <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -294,9 +301,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body">
+
       <div>Se eliminará por completo.</div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
@@ -304,7 +312,10 @@
       </div>
     </div>
   </div>
-</div><!-- /page content -->
+</div>
+
+              
+        <!-- /page content -->
 
         <!-- footer content -->
         <footer>
@@ -316,31 +327,9 @@
         <!-- /footer content -->
       </div>
     </div>
-<!-- añadir datos -->
-<script>
-  function agregarFrmActualizar(id_producto){
-    $.ajax({
-      type:"POST",
-      data:"id_producto="+ id_producto,
-      url: "../conexiones/obtenDatos.php",
-      success:function(r){
-        datos=jQuery.parseJSON(r);
-        $('#id_producto').val(datos['id_producto']);
-        $('#nombre').val(datos['nombre']);
-        $('#cantidad').val(datos['cantidad']);
-        $('#precio').val(datos['precio']);
-        $('#tipo').val(datos['tipo']);
-      }
-    });
-  }
-</script>
-
-
-
-
-
 
     <!-- jQuery -->
+
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -351,7 +340,7 @@
     <!-- iCheck -->
     <script src="../vendors/iCheck/icheck.min.js"></script>
     <!-- Datatables -->
-    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
     <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
     <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
@@ -366,7 +355,7 @@
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-    <!-- jQuery library -->
+
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
