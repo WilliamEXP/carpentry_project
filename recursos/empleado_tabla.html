@@ -47,7 +47,7 @@
                 <img src="images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Bienbenido, </span>
+                <span>Bienvenido, </span>
                 <h2>Administrador</h2>
               </div>
             </div>

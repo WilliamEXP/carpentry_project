@@ -48,7 +48,7 @@
                 <img src="images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Bienbenido, </span>
+                <span>Bienvenido, </span>
                 <h2>Administrador</h2>
               </div>
             </div>
@@ -183,6 +183,7 @@
                       
                       <tbody>
                         <?php
+                        
                         $conexion = mysqli_connect("localhost", "root","", "carpentry_proyect");
                         $sql="SELECT id_producto, nombre, cantidad, precio, tipo FROM producto";
                         $result=mysqli_query($conexion,$sql);
@@ -194,12 +195,13 @@
                           <td><?php echo $mostrar[2]?></td>
                           <td><?php echo $mostrar[3]?></td>
                           <td><?php echo $mostrar[4]?></td>
-                          <td aling = "center"><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar" onclick ="agregarFrmActualizar('<?php echo $mostrar[0]?>');">
+                          <td aling = "center"><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar" onclick ="<?php echo $mostrar[0]?>'">
                           <span class = "fa fa-pencil-square-o"  ></span></span></td>
                           <td style = "text-aling: center;"><span class="btn btn-round btn-danger btn-sm" data-toggle="modal" data-target="#eliminar">
                           <span class = "fa fa-trash"></span></span></td>
                         </tr>
-                        <?php } ?>
+                        
+                      <?php } ?>
                             
                       </tbody>
                     
@@ -226,39 +228,44 @@
       </div>
       <div class="modal-body">
 <form id="edit_datos" data-parsley-validate class="form-horizontal form-label-center" action="../conexiones/insert_producto.php" method="POST">
-
+<?php
+                        $conexion = mysqli_connect("localhost", "root","", "carpentry_proyect");
+                        $sql="SELECT id_producto, nombre, cantidad, precio, tipo FROM producto WHERE id_producto = '1'" ;
+                        $resultado=mysqli_query($conexion,$sql);
+                        while($editar=mysqli_fetch_array($resultado)){
+                          ?>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">ID Producto 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <input type="Number" name ="id_producto" id="id_producto" class="form-control ">
+    <input type="Number" name ="id_producto" id="id_producto" class="form-control " placeholder="<?php echo $editar[0]?>">
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Nombre 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <input type="text" id="nombre"  class="form-control "name ="nombre">
+    <input type="text" id="nombre"  class="form-control "name ="nombre" placeholder="<?php echo $editar[1]?>">
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Cantidad 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <input type="Number" min="1" pattern="^[0-9]+" id="cantidad" name="cantidad" class="form-control">
+    <input type="Number" min="1" pattern="^[0-9]+" id="cantidad" name="cantidad" class="form-control" placeholder="<?php echo $editar[2]?>">
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Precio sugerido</label>
   <div class="col-md-6 col-sm-6 ">
-    <input id="precio" class="form-control" type="number" name="precio">
+    <input id="precio" class="form-control" type="number" name="precio" placeholder="<?php echo $editar[3]?>">
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align" >Tipo 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <select id="tipo" name="tipo" id="tipo" class="form-control ">
+    <select id="tipo" name="tipo" id="tipo" class="form-control "placeholder="<?php echo $editar[4]?>">
     <option value="" disabled selected>Seleccionar</option>
                <option>Silla</option>
               <option>Ropero</option>
@@ -273,6 +280,7 @@
 </div>
 
 </form>
+<?php } ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -324,7 +332,8 @@
       data:"id_producto="+ id_producto,
       url: "../conexiones/obtenDatos.php",
       success:function(r){
-        datos=jQuery.parseJSON(r);
+        datos=r;
+        console.log(datos);
         $('#id_producto').val(datos['id_producto']);
         $('#nombre').val(datos['nombre']);
         $('#cantidad').val(datos['cantidad']);
