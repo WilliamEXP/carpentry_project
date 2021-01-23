@@ -146,7 +146,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Clientes<small></small></h3>
+                <h3>Empleados<small></small></h3>
               </div>
 
               <div class="title_right">
@@ -160,7 +160,7 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Tabla <small>Clientes</small></h2>
+                    <h2>Tabla <small>Empleados</small></h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -171,21 +171,22 @@
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                        <th>ID Cliente</th>
+                          <th>ID Empleado</th>
                           <th>Nombre</th>
                           <th>Apellido</th>
                           <th>Género</th>
                           <th>Dirección</th>
                           <th>Localidad</th>
-                          <th>Telefono</th>
+                          <th>Teléfono</th>
+                          <th>Puesto</th>
                           <th>Editar</th>
                           <th>Eliminar</th>
                         </tr>
                       </thead>
                       <tbody>
-                      <?php
+                        <?php
                         $conexion = mysqli_connect("localhost", "root","", "carpentry_proyect");
-                        $sql="SELECT id_cliente, nombre, apellido, genero, direccion, localidad, telefono FROM clientes";
+                        $sql="SELECT id_vendedor, nombre, apellido, genero, direccion, telefono, localidad, Puesto FROM vendedor";
                         $result=mysqli_query($conexion,$sql);
                         while($mostrar=mysqli_fetch_array($result)){
                           ?>
@@ -197,6 +198,7 @@
                           <td><?php echo "$mostrar[4]"?></td>
                           <td><?php echo "$mostrar[5]"?></td>
                           <td><?php echo "$mostrar[6]"?></td>
+                          <td><?php echo "$mostrar[7]"?></td>
 
                           <td><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar">
                           <span class = "fa fa-pencil-square-o"  ></span></span></td>
@@ -205,7 +207,7 @@
                           <span class = "fa fa-trash"></span></span></td>
 
                         </tr>
-                        <?php } ?>         
+                        <?php } ?>            
                       </tbody>
                     </table>
                   </div>
@@ -214,26 +216,43 @@
             </div>
                 </div>
               </div>
-<!-- aqui va la advertencia para modificar -->
 
-<!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+              
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            <!-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a> -->
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+
+    <div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editar Empleado</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <form  class="form-horizontal form-label-left" action="../conexiones/insert_cliente.php" method="POST">
+      
+
+      <form  class="form-horizontal form-label-left" action="../conexiones/insert_empleado.php" method="POST">
 
 <div class="form-group row">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Nombre</label>
   <div class="col-md-6 col-sm-6">
-    <input type="text" class="form-control" name="nombre" id="nombre">
+    <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre">
     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
@@ -250,9 +269,9 @@
       <label class="col-form-label col-md-3 col-sm-3 label-align">Género</label>
     <div class="control-label col-md-6 col-sm-6  form-group has-feedback">
         <label class="control-labelcol-md-6 col-sm-6  form-group has-feedback">Masculino:
-      <input type="radio" class="flat" name="gender" id="gender" value="Masculino" checked="" required /> </label>
+      <input type="radio" class="flat" name="genero" id="genero" value="Masculino" checked="" required /> </label>
       <label class="col-md-6 col-sm-6  form-group has-feedback">Femenino:
-      <input type="radio" class="flat" name="gender" id="gender" value="Femenino" /></label>
+      <input type="radio" class="flat" name="genero" id="genero" value="Femenino" /></label>
     </div>
   </div>
 
@@ -277,6 +296,13 @@
     <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
+<div class="form-group row">
+  <label class="col-form-label col-md-3 col-sm-3 label-align">Puesto</label>
+  <div class="col-md-6 col-sm-6">
+    <input type="text" class="form-control" name="puesto" id="puesto">
+    <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+  </div>
+</div>
 <div class="ln_solid"></div>
 </form>
       </div>
@@ -290,8 +316,6 @@
 
 
 
-<!-- Button trigger modal -->
-<!-- Modal -->
 <div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -314,21 +338,8 @@
   </div>
 </div>
 
-              
-        <!-- /page content -->
 
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            <!-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a> -->
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
-    </div>
 
-    <!-- jQuery -->
 
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->

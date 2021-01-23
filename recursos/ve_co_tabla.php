@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="images/favicon.ico" type="image/ico" />
+  <link rel="icon" href="images/tree.ico" type="image/ico" />
 
     <title>Gestion </title>
 
@@ -72,13 +72,13 @@
                   <li><a><i class="fa fa-users"></i> Clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="cliente_form.html">Agregar</a></li>
-                      <li><a href="media_gallery.html">Administrar</a></li>
+                      <li><a href="cliente_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="empleado_form.html">Agregar</a></li>
-                      <li><a href="empleado_tabla.html">Administrar</a></li>
+                      <li><a href="empleado_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Ventas <span class="fa fa-chevron-down"></span></a>
@@ -86,9 +86,9 @@
                         <li><a href="#level1_1">Crédito<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             </li>
-                            <li><a href="#level2_1">Agregar</a>
+                            <li><a href="ve_cre_form.html">Agregar</a>
                             </li>
-                            <li><a href="#level2_2">Administrar</a>
+                            <li><a href="ve_cre_tabla.php">Administrar</a>
                             </li>
                           </ul>
                         </li>
@@ -97,7 +97,7 @@
                             </li>
                             <li><a href="ve_co_form.html">Agregar</a>
                             </li>
-                            <li><a href="ve_co_tabla.html">Administrar</a>
+                            <li><a href="ve_co_tabla.php">Administrar</a>
                             </li>
                           </ul>
                         </li>
@@ -176,25 +176,32 @@
                           <th>Cantidad</th>
                           <th>Precio sugerido</th>
                           <th>Precio Total</th>
+                          <th>Editar</th>
+                          <th>Eliminar</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
+                          <th>1</th>
+                          <th>5</th>
+                          <th>Silla Normal</th>
+                          <th>2</th>
+                          <th>700</th>
+                          <th>1120</th>
+                          <td aling = "center"><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar" onclick ="">
+                          <span class = "fa fa-pencil-square-o"  ></span></span></td>
+                          <td style = "text-aling: center;"><span class="btn btn-round btn-danger btn-sm" data-toggle="modal" data-target="#eliminar">
+                          <span class = "fa fa-trash"></span></span></td> 
                         </tr>
-                        <tr>
+                        <!-- <tr>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th></th>
                           <th></th>
-                        </tr>            
+                        </tr>       -->  
+                           
                       </tbody>
                     </table>
                   </div>

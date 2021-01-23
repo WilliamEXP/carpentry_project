@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="images/favicon.ico" type="image/ico" />
+  <link rel="icon" href="images/tree.ico" type="image/ico" />
 
     <title>Gestion </title>
 
@@ -72,13 +72,13 @@
                   <li><a><i class="fa fa-users"></i> Clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="cliente_form.html">Agregar</a></li>
-                      <li><a href="media_gallery.html">Administrar</a></li>
+                      <li><a href="cliente_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="empleado_form.html">Agregar</a></li>
-                      <li><a href="empleado_tabla.html">Administrar</a></li>
+                      <li><a href="empleado_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Ventas <span class="fa fa-chevron-down"></span></a>
@@ -86,9 +86,9 @@
                         <li><a href="#level1_1">Crédito<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             </li>
-                            <li><a href="#level2_1">Agregar</a>
+                            <li><a href="ve_cre_form.html">Agregar</a>
                             </li>
-                            <li><a href="#level2_2">Administrar</a>
+                            <li><a href="ve_cre_tabla.php">Administrar</a>
                             </li>
                           </ul>
                         </li>
@@ -97,7 +97,7 @@
                             </li>
                             <li><a href="ve_co_form.html">Agregar</a>
                             </li>
-                            <li><a href="ve_co_tabla.html">Administrar</a>
+                            <li><a href="ve_co_tabla.php">Administrar</a>
                             </li>
                           </ul>
                         </li>
@@ -146,11 +146,10 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Empleados<small></small></h3>
+                <h3>Ventas a crédito<small></small></h3>
               </div>
 
               <div class="title_right">
-                
               </div>
             </div>
 
@@ -160,7 +159,7 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Tabla <small>Empleados</small></h2>
+                    <h2>Tabla <small>Ventas</small></h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -171,12 +170,12 @@
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                          <th>ID Empleado</th>
-                          <th>Nombre</th>
-                          <th>Apellido</th>
-                          <th>Dirección</th>
-                          <th>Localidad</th>
-                          <th>Teléfono</th>
+                          <th>ID venta</th>
+                          <th>ID artículo</th>
+                          <th>Artículo</th>
+                          <th>Cantidad</th>
+                          <th>Precio sugerido</th>
+                          <th>Precio Total</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -187,7 +186,6 @@
                           <th></th>
                           <th></th>
                           <th></th>
-                          
                         </tr>
                         <tr>
                           <th></th>
@@ -214,7 +212,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            <!-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a> -->
+           <!-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a> -->
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -223,7 +221,6 @@
     </div>
 
     <!-- jQuery -->
-
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -234,7 +231,7 @@
     <!-- iCheck -->
     <script src="../vendors/iCheck/icheck.min.js"></script>
     <!-- Datatables -->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.22/datatables.min.js"></script>
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
     <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>

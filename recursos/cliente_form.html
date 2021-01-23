@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="images/favicon.ico" type="image/ico" />
+  <link rel="icon" href="images/tree.ico" type="image/ico"  />
 
     <title>Gestion </title>
 
@@ -78,7 +78,7 @@
                   <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="empleado_form.html">Agregar</a></li>
-                      <li><a href="empleado_tabla.html">Administrar</a></li>
+                      <li><a href="empleado_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Ventas <span class="fa fa-chevron-down"></span></a>
@@ -86,9 +86,9 @@
                         <li><a href="#level1_1">Crédito<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             </li>
-                            <li><a href="#level2_1">Agregar</a>
+                            <li><a href="ve_cre_form.html">Agregar</a>
                             </li>
-                            <li><a href="#level2_2">Administrar</a>
+                            <li><a href="ve_cre_tabla.php">Administrar</a>
                             </li>
                           </ul>
                         </li>
@@ -97,7 +97,7 @@
                             </li>
                             <li><a href="ve_co_form.html">Agregar</a>
                             </li>
-                            <li><a href="ve_co_tabla.html">Administrar</a>
+                            <li><a href="ve_co_tabla.php">Administrar</a>
                             </li>
                           </ul>
                         </li>
@@ -181,15 +181,13 @@
                           <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                         </div>
                       </div>
-
-
                         <div class="form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Género</label>
                           <div class="control-label col-md-6 col-sm-6  form-group has-feedback">
                               <label class="control-labelcol-md-6 col-sm-6  form-group has-feedback">Masculino:
-                            <input type="radio" class="flat" name="gender" id="gender" value="Masculino" checked="" required /> </label>
+                            <input type="radio" class="flat" name="genero" id="genero" value="Masculino" checked="" required /> </label>
                             <label class="col-md-6 col-sm-6  form-group has-feedback">Femenino:
-                            <input type="radio" class="flat" name="gender" id="gender" value="Femenino" /></label>
+                            <input type="radio" class="flat" name="genero" id="genero" value="Femenino" /></label>
                           </div>
                         </div>
                       
@@ -218,7 +216,7 @@
 
                       <div class="form-group row">
                         <div class="col-form-label col-md-3 col-sm-3 label-align offset-md-4">
-                          <button type="submit" class="btn btn-primary">Cancelar</button>
+                          <button type="reset" class="btn btn-primary">Cancelar</button>
                           <button type="submit" class="btn btn-success">Guardar</button>
                         </div>
                       </div>

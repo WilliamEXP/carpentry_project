@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="images/favicon.ico" type="image/ico" />
+  <link rel="icon" href="images/tree.ico" type="image/ico" />
 
     <title>Gestion </title>
 
@@ -73,13 +73,13 @@
                   <li><a><i class="fa fa-users"></i> Clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="cliente_form.html">Agregar</a></li>
-                      <li><a href="media_gallery.html">Administrar</a></li>
+                      <li><a href="cliente_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="empleado_form.html">Agregar</a></li>
-                      <li><a href="empleado_tabla.html">Administrar</a></li>
+                      <li><a href="empleado_tabla.php">Administrar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Ventas <span class="fa fa-chevron-down"></span></a>
@@ -87,9 +87,9 @@
                         <li><a href="#level1_1">Crédito<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             </li>
-                            <li><a href="#level2_1">Agregar</a>
+                            <li><a href="ve_cre_form.html">Agregar</a>
                             </li>
-                            <li><a href="#level2_2">Administrar</a>
+                            <li><a href="ve_cre_tabla.php">Administrar</a>
                             </li>
                           </ul>
                         </li>
@@ -98,7 +98,7 @@
                             </li>
                             <li><a href="ve_co_form.html">Agregar</a>
                             </li>
-                            <li><a href="ve_co_tabla.html">Administrar</a>
+                            <li><a href="ve_co_tabla.php">Administrar</a>
                             </li>
                           </ul>
                         </li>
@@ -262,19 +262,12 @@
   </div>
 </div>
 <div class="item form-group">
-  <label class="col-form-label col-md-3 col-sm-3 label-align" >Tipo 
-  </label>
-  <div class="col-md-6 col-sm-6 ">
-    <select id="tipo" name="tipo" id="tipo" class="form-control "placeholder="<?php echo $editar[4]?>">
-    <option value="" disabled selected>Seleccionar</option>
-               <option>Silla</option>
-              <option>Ropero</option>
-              <option>Banquillo</option>
-              <option>Mesa</option>
-              <option>E</option>
-            </select>
-  </div>
-</div>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="articulo">Tipo <span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input id="tipo" class="form-control" type="text" name="tipo" placeholder="<?php echo $editar[4]?>">
+											</div>
+										</div>
 <div class="ln_solid"></div>
 <div class="item form-group">
 </div>
