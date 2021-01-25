@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -187,21 +188,32 @@
                         $conexion = mysqli_connect("localhost", "root","", "carpentry_proyect");
                         $sql="SELECT id_producto, nombre, cantidad, precio, tipo FROM producto";
                         $result=mysqli_query($conexion,$sql);
-                        while($mostrar=mysqli_fetch_array($result)){
+                        while($mostrar=mysqli_fetch_object($result)){
                           ?>
                         <tr>
-                          <td><?php echo $mostrar[0]?></td>
-                          <td><?php echo $mostrar[1]?></td>
-                          <td><?php echo $mostrar[2]?></td>
-                          <td><?php echo $mostrar[3]?></td>
-                          <td><?php echo $mostrar[4]?></td>
-                          <td aling = "center"><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar" onclick ="<?php echo $mostrar[0]?>'">
-                          <span class = "fa fa-pencil-square-o"  ></span></span></td>
-                          <td style = "text-aling: center;"><span class="btn btn-round btn-danger btn-sm" data-toggle="modal" data-target="#eliminar">
-                          <span class = "fa fa-trash"></span></span></td>
+                          <td><?php echo $mostrar->id_producto;?></td>
+                          <td><?php echo $mostrar->nombre;?></td>
+                          <td><?php echo $mostrar->cantidad;?></td>
+                          <td><?php echo $mostrar->precio;?></td>
+                          <td><?php echo $mostrar->tipo;?></td>
+                          <td aling = "center">
+                            <form action="" metHod="POST">
+                          <a ><button class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar" onclick ="agregarFrmActualizar(<?php $mostrar->id_producto;?>)">
+                          <span class = "fa fa-pencil-square-o"  ></span></button></a>
+                          </form>
+                        </td>
+                          <td style = "text-aling: center;" >
+                            <a href="../conexiones/borrar_producto.php?id_producto=<?php echo $mostrar->id_producto?>"><span class="btn btn-round btn-danger btn-sm"  onclick = "confirmar()">
+                             <span class = "fa fa-trash">
+
+                            </span>
+                        </span></a>
+                      </td>
                         </tr>
                         
-                      <?php } ?>
+                      <?php
+                       } 
+                      ?>
                             
                       </tbody>
                     
@@ -214,9 +226,13 @@
               </div>
 
 
+
+
+
 <!-- Button trigger modal -->
 <!-- Button trigger modal -->
 <!-- Modal -->
+
 <div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -227,86 +243,58 @@
         </button>
       </div>
       <div class="modal-body">
-<form id="edit_datos" data-parsley-validate class="form-horizontal form-label-center" action="../conexiones/insert_producto.php" method="POST">
-<?php
-                        $conexion = mysqli_connect("localhost", "root","", "carpentry_proyect");
-                        $sql="SELECT id_producto, nombre, cantidad, precio, tipo FROM producto WHERE id_producto = '1'" ;
-                        $resultado=mysqli_query($conexion,$sql);
-                        while($editar=mysqli_fetch_array($resultado)){
-                          ?>
+<form id="edit_datos" data-parsley-validate class="form-horizontal form-label-center" action="../conexiones/modificar_producto.php" method="POST">
+
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">ID Producto 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <input type="Number" name ="id_producto" id="id_producto" class="form-control " placeholder="<?php echo $editar[0]?>">
+    <input type="Number" name ="id_producto" id="id_producto" class="form-control " >
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Nombre 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <input type="text" id="nombre"  class="form-control "name ="nombre" placeholder="<?php echo $editar[1]?>">
+    <input type="text" id="nombre"  class="form-control "name ="nombre" >
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Cantidad 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <input type="Number" min="1" pattern="^[0-9]+" id="cantidad" name="cantidad" class="form-control" placeholder="<?php echo $editar[2]?>">
+    <input type="Number" min="1" pattern="^[0-9]+" id="cantidad" name="cantidad" class="form-control" >
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Precio sugerido</label>
   <div class="col-md-6 col-sm-6 ">
-    <input id="precio" class="form-control" type="number" name="precio" placeholder="<?php echo $editar[3]?>">
+    <input id="precio" class="form-control" type="number" name="precio" >
   </div>
 </div>
 <div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="articulo">Tipo <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input id="tipo" class="form-control" type="text" name="tipo" placeholder="<?php echo $editar[4]?>">
+												<input id="tipo" class="form-control" type="text" name="tipo" >
 											</div>
 										</div>
 <div class="ln_solid"></div>
 <div class="item form-group">
 </div>
 
+<div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-warning id="btnactualizar">Actualizar</button>
+          </div>
+
 </form>
-<?php } ?>
+
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-warning id="btnactualizar">Actualizar</button>
-      </div>
-    </div>
+         
+       </div>
   </div>
 </div>
-
-
-       
-<!-- Modal de ELIMINAR -->
-<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">¿Seguro?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-      <div>Se eliminará por completo.</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div><!-- /page content -->
-
         <!-- footer content -->
         <footer>
           <div class="pull-right">
@@ -336,11 +324,32 @@
     });
   }
 </script>
+<script>
+  function confirmar(){
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+
+  }
+</script>
 
 
 
-
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
