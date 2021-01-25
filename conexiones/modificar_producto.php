@@ -17,8 +17,8 @@ if (!$resultado)
 else
 {
 echo '<script>
-window.history.go(-1);
 alert("Modificado")
-</script>';    
+</script>';  
+header("Location: ../recursos/producto_tabla.php");   
 }
 mysqli_close($conexion);?>
