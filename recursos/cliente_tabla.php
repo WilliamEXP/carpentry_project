@@ -1,3 +1,21 @@
+<?php
+error_reporting(0);
+$id_cliente = $_POST["id_cliente"];
+$nombre = $_POST["nombre"];
+$apellido = $_POST["apellido"];
+$genero = $_POST["genero"];
+$direccion = $_POST["direccion"];
+$telefono = $_POST["telefono"];
+$localidad = $_POST["localidad"];
+$action = $_POST["action"];
+$modalMostrar = false;
+switch($action){
+case "editar":
+  $modalMostrar = true;
+break;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -176,8 +194,9 @@
                           <th>Apellido</th>
                           <th>Género</th>
                           <th>Dirección</th>
-                          <th>Localidad</th>
+                          
                           <th>Telefono</th>
+                          <th>Localidad</th>
                           <th>Editar</th>
                           <th>Eliminar</th>
                         </tr>
@@ -187,22 +206,40 @@
                         $conexion = mysqli_connect("localhost", "root","", "carpentry_proyect");
                         $sql="SELECT id_cliente, nombre, apellido, genero, direccion, localidad, telefono FROM clientes";
                         $result=mysqli_query($conexion,$sql);
-                        while($mostrar=mysqli_fetch_array($result)){
+                        while($mostrar=mysqli_fetch_object($result)){
                           ?>
                         <tr>
-                          <td><?php echo "$mostrar[0]"?></td>
-                          <td><?php echo "$mostrar[1]"?></td>
-                          <td><?php echo "$mostrar[2]"?></td>
-                          <td><?php echo "$mostrar[3]"?></td>
-                          <td><?php echo "$mostrar[4]"?></td>
-                          <td><?php echo "$mostrar[5]"?></td>
-                          <td><?php echo "$mostrar[6]"?></td>
+                          <td><?php echo $mostrar->id_cliente?></td>
+                          <td><?php echo $mostrar->nombre?></td>
+                          <td><?php echo $mostrar->apellido?></td>
+                          <td><?php echo $mostrar->genero?></td>
+                          <td><?php echo $mostrar->direccion?></td>
+                          <td><?php echo $mostrar->telefono?></td>
+                          <td><?php echo $mostrar->localidad?></td>
 
-                          <td><span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar">
-                          <span class = "fa fa-pencil-square-o"  ></span></span></td>
+                          <td><form action="" method="POST">
+                            <input type="hidden" id="id_cliente" required="required" class="form-control "name ="id_cliente" value ="<?php echo $mostrar->id_cliente;?>">
+                            <input type="hidden" id="nombre" required="required" class="form-control "name ="nombre" value ="<?php echo $mostrar->nombre;?>">
+                            <input type="hidden" id="apellido" required="required" class="form-control "name ="apellido" value="<?php echo $mostrar->apellido;?>">
+                            <input type="hidden" id="genero" required="required" class="form-control "name ="genero" value ="<?php echo $mostrar->genero;?>">
+                            <input type="hidden" id="direccion" required="required" class="form-control "name ="direccion" value="<?php echo $mostrar->direccion;?>">
 
-                          <td><span class="btn btn-round btn-danger" data-toggle="modal" data-target="#eliminar">
-                          <span class = "fa fa-trash"></span></span></td>
+                            <input type="hidden" id="telefono" required="required" class="form-control "name ="telefono" value="<?php echo $mostrar->telefono;?>">
+                            <input type="hidden" id="localidad" required="required" class="form-control "name ="localidad" value="<?php echo $mostrar->localidad;?>">
+                    
+                          <a ><button class="btn btn-round btn-warning btn-sm" value = "editar" name = "action"  type = "submit">
+                          <span class = "fa fa-pencil-square-o" ></span></button></a>
+                          <span data-toggle="modal" data-target="#editar">
+                          <span class = "fa fa-pencil-square-o"  ></span></span>
+                          </form>
+                          
+                        </td>
+                          <td style = "text-aling: center;" >
+                            <a href="../conexiones/borrar_cliente.php?id_cliente=<?php echo $mostrar->id_cliente?>"><span class="btn btn-round btn-danger btn-sm"  onclick = "return confirmar()">
+                             <span class = "fa fa-trash">
+
+                            </span>
+                        </span></a></td>
 
                         </tr>
                         <?php } ?>         
@@ -228,19 +265,20 @@
         </button>
       </div>
       <div class="modal-body">
-      <form  class="form-horizontal form-label-left" action="../conexiones/insert_cliente.php" method="POST">
+      <form  class="form-horizontal form-label-left" action="../conexiones/modificar_cliente.php" method="POST">
 
 <div class="form-group row">
+<input type="hidden" class="form-control" name="id_cliente" id="id_cliente" value = "<?php echo $id_cliente ?>">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Nombre</label>
   <div class="col-md-6 col-sm-6">
-    <input type="text" class="form-control" name="nombre" id="nombre">
+    <input type="text" class="form-control" name="nombre" id="nombre" value = "<?php echo $nombre ?>">
     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
 <div class="form-group row">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Apellido</label>
   <div class="col-md-6 col-sm-6">
-    <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido">
+    <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido" value = "<?php echo $apellido ?>">
     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
@@ -250,71 +288,44 @@
       <label class="col-form-label col-md-3 col-sm-3 label-align">Género</label>
     <div class="control-label col-md-6 col-sm-6  form-group has-feedback">
         <label class="control-labelcol-md-6 col-sm-6  form-group has-feedback">Masculino:
-      <input type="radio" class="flat" name="gender" id="gender" value="Masculino" checked="" required /> </label>
+      <input type="radio" class="flat" name="genero" id="genero" value="Masculino" checked="" required /> </label>
       <label class="col-md-6 col-sm-6  form-group has-feedback">Femenino:
-      <input type="radio" class="flat" name="gender" id="gender" value="Femenino" /></label>
+      <input type="radio" class="flat" name="genero" id="genero" value="Femenino" /></label>
     </div>
   </div>
 
 <div class="form-group row">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Direccion</label>
   <div class="col-md-6 col-sm-6">
-    <input type="text" class="form-control" name="direccion" id="direccion">
+    <input type="text" class="form-control" name="direccion" id="direccion" value = "<?php echo $direccion ?>">
     <span class="fa fa-home form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
 <div class="form-group row">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Telefono</label>
   <div class="col-md-6 col-sm-6">
-    <input type="text" class="form-control" placeholder="Télefono" data-inputmask="'mask' : '999 999 9999'" name="telefono" id="telefono">
+    <input type="text" class="form-control" placeholder="Télefono" data-inputmask="'mask' : '999 999 9999'" name="telefono" id="telefono" value = "<?php echo $telefono ?>">
     <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
 <div class="form-group row">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Localidad</label>
   <div class="col-md-6 col-sm-6">
-    <input type="text" class="form-control" name="localidad" id="localidad">
+    <input type="text" class="form-control" name="localidad" id="localidad" value = "<?php echo $localidad ?>">
     <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
   </div>
 </div>
 <div class="ln_solid"></div>
+<div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      </div>
 </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Guardar Cambios</button>
-      </div>
+      
     </div>
   </div>
 </div>
-
-
-
-<!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">¿Seguro?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-      <div>Se eliminará por completo.</div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-              
         <!-- /page content -->
 
         <!-- footer content -->
@@ -327,6 +338,19 @@
         <!-- /footer content -->
       </div>
     </div>
+
+    <script>
+  function confirmar(){
+    var $con = confirm("¿Estas Seguro de emilinarlo?");
+  if ($con == true) {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+  }
+</script>
 
     <!-- jQuery -->
 
