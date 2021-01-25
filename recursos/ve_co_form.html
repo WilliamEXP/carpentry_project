@@ -146,7 +146,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Ventas a contado</h3>
+							<h3>Ventas</h3>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -159,43 +159,32 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="../conexiones/insert_venta.php" method="POST">
 
+									
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id_venta">ID Venta <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id_articulo">ID producto <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="Number" id="id_venta" required="required" class="form-control ">
+												<input type="Number" id="id_producto" required="required" class="form-control ">
+											</div>
+										</div>
+										
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="cantidad">nombre (cliente) <span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="Text" id="nombre" name="nombre" required="required" class="form-control">
 											</div>
 										</div>
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id_articulo">ID Artículo <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="cantidad">cantidad <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="Number" id="id_articulo" required="required" class="form-control ">
+												<input type="number" id="cantidad" name="cantidad" required="required" class="form-control">
 											</div>
 										</div>
-										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="articulo">Artículo <span class="required">*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 ">
-												<select id="articulo" required="required" class="form-control ">
-												<option value="" disabled selected>Seleccionar</option>
-                   								<option>Silla</option>
-                    							<option>Ropero</option>
-                    							<option>Banquillo</option>
-                    							<option>Mesa</option>
-                    							<option>E</option>
-                								</select>
-											</div>
-										</div>
-										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="cantidad">Cantidad <span class="required">*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 ">
-												<input type="Number" min="1" pattern="^[0-9]+" id="cantidad" name="cantidad" required="required" class="form-control">
-											</div>
-										</div>
+
 										<div class="item form-group">
 											<label for="precio_sugerido" class="col-form-label col-md-3 col-sm-3 label-align">Precio sugerido</label>
 											<div class="col-md-6 col-sm-6 ">
@@ -207,20 +196,6 @@
 											<label for="precio_total" class="col-form-label col-md-3 col-sm-3 label-align">Precio Total</label>
 											<div class="col-md-6 col-sm-6 ">
 												<input id="precio_total" class="form-control" type="number" name="precio_total">
-											</div>
-										</div>
-										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align">Fecha <span class="required">*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 ">
-												<input id="fecha" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-												<script>
-													function timeFunctionLong(input) {
-														setTimeout(function() {
-															input.type = 'text';
-														}, 60000);
-													}
-												</script>
 											</div>
 										</div>
 										<div class="ln_solid"></div>
