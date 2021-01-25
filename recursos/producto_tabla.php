@@ -220,9 +220,9 @@ break;
                             <input type="hidden" id="precio" required="required" class="form-control "name ="precio" value ="<?php echo $mostrar->precio;?>">
                             <input type="hidden" id="tipo" required="required" class="form-control "name ="tipo" value="<?php echo $mostrar->tipo;?>">
                     
-                          <a ><button class="btn btn-round btn-warning btn-sm" value = "editar" name = "action"  type = "submit">
-                          <span class = "fa fa-pencil-square-o" ></span></button></a>
-                          <span data-toggle="modal" data-target="#editar">
+                          <a ><button class="btn btn-round btn btn-light btn-sm" value = "editar" name = "action"  type = "submit">
+                          <span class = "fa fa-check" ></span></button></a>
+                          <span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar">
                           <span class = "fa fa-pencil-square-o"  ></span></span>
                           </form>
                           

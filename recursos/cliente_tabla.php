@@ -227,9 +227,9 @@ break;
                             <input type="hidden" id="telefono" required="required" class="form-control "name ="telefono" value="<?php echo $mostrar->telefono;?>">
                             <input type="hidden" id="localidad" required="required" class="form-control "name ="localidad" value="<?php echo $mostrar->localidad;?>">
                     
-                          <a ><button class="btn btn-round btn-warning btn-sm" value = "editar" name = "action"  type = "submit">
-                          <span class = "fa fa-pencil-square-o" ></span></button></a>
-                          <span data-toggle="modal" data-target="#editar">
+                          <a ><button class="btn btn-round btn btn-light btn-sm" value = "editar" name = "action"  type = "submit">
+                          <span class = "fa fa-check" ></span></button></a>
+                          <span class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar">
                           <span class = "fa fa-pencil-square-o"  ></span></span>
                           </form>
                           
