@@ -1,3 +1,19 @@
+<?php
+error_reporting(0);
+$id_producto = $_POST["id_producto"];
+$nombre = $_POST["nombre"];
+$cantidad = $_POST["cantidad"];
+$precio = $_POST["precio"];
+$tipo = $_POST["tipo"];
+$action = $_POST["action"];
+$modalMostrar = false;
+switch($action){
+case "editar":
+  $modalMostrar = true;
+break;
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -197,13 +213,22 @@
                           <td><?php echo $mostrar->precio;?></td>
                           <td><?php echo $mostrar->tipo;?></td>
                           <td aling = "center">
-                            <form action="" metHod="POST">
-                          <a ><button class="btn btn-round btn-warning btn-sm" data-toggle="modal" data-target="#editar" onclick ="agregarFrmActualizar(<?php $mostrar->id_producto;?>)">
-                          <span class = "fa fa-pencil-square-o"  ></span></button></a>
+                            <form action="" method="POST">
+                            <input type="hidden" id="id_prducto" required="required" class="form-control "name ="id_producto" value ="<?php echo $mostrar->id_producto;?>">
+                            <input type="hidden" id="nombre" required="required" class="form-control "name ="nombre" value ="<?php echo $mostrar->nombre;?>">
+                            <input type="hidden" id="cantidad" required="required" class="form-control "name ="cantidad" value="<?php echo $mostrar->cantidad;?>">
+                            <input type="hidden" id="precio" required="required" class="form-control "name ="precio" value ="<?php echo $mostrar->precio;?>">
+                            <input type="hidden" id="tipo" required="required" class="form-control "name ="tipo" value="<?php echo $mostrar->tipo;?>">
+                    
+                          <a ><button class="btn btn-round btn-warning btn-sm" value = "editar" name = "action"  type = "submit">
+                          <span class = "fa fa-pencil-square-o" ></span></button></a>
+                          <span data-toggle="modal" data-target="#editar">
+                          <span class = "fa fa-pencil-square-o"  ></span></span>
                           </form>
+                          
                         </td>
                           <td style = "text-aling: center;" >
-                            <a href="../conexiones/borrar_producto.php?id_producto=<?php echo $mostrar->id_producto?>"><span class="btn btn-round btn-danger btn-sm"  onclick = "confirmar()">
+                            <a href="../conexiones/borrar_producto.php?id_producto=<?php echo $mostrar->id_producto?>"><span class="btn btn-round btn-danger btn-sm"  onclick = "return confirmar()">
                              <span class = "fa fa-trash">
 
                             </span>
@@ -214,7 +239,7 @@
                       <?php
                        } 
                       ?>
-                            
+                          
                       </tbody>
                     
                     </table>
@@ -226,9 +251,19 @@
               </div>
 
 
+              
+  
+  
+    <script>
+      if (<?php echo $modalMostrar ?> = TRUE)
+      {
+     cosole.log("hola";)
+     $('#editar').modal('show');
+      }
+    </script>
+    
 
-
-
+<?php echo $modalMostrar ?>
 <!-- Button trigger modal -->
 <!-- Button trigger modal -->
 <!-- Modal -->
@@ -249,34 +284,34 @@
   <label class="col-form-label col-md-3 col-sm-3 label-align">ID Producto 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <input type="Number" name ="id_producto" id="id_producto" class="form-control " >
+    <input type="Number" name ="id_producto" id="id_producto" class="form-control " value ="<?php echo $id_producto ?>">
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Nombre 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <input type="text" id="nombre"  class="form-control "name ="nombre" >
+    <input type="text" id="nombre"  class="form-control "name ="nombre" value ="<?php echo $nombre ?>">
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Cantidad 
   </label>
   <div class="col-md-6 col-sm-6 ">
-    <input type="Number" min="1" pattern="^[0-9]+" id="cantidad" name="cantidad" class="form-control" >
+    <input type="Number" min="1" pattern="^[0-9]+" id="cantidad" name="cantidad" class="form-control" value ="<?php echo $cantidad ?>">
   </div>
 </div>
 <div class="item form-group">
   <label class="col-form-label col-md-3 col-sm-3 label-align">Precio sugerido</label>
   <div class="col-md-6 col-sm-6 ">
-    <input id="precio" class="form-control" type="number" name="precio" >
+    <input id="precio" class="form-control" type="number" name="precio" value ="<?php echo $precio ?>">
   </div>
 </div>
 <div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="articulo">Tipo <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input id="tipo" class="form-control" type="text" name="tipo" >
+												<input id="tipo" class="form-control" type="text" name="tipo" value ="<?php echo $tipo ?>">
 											</div>
 										</div>
 <div class="ln_solid"></div>
@@ -307,43 +342,15 @@
     </div>
 <!-- añadir datos -->
 <script>
-  function agregarFrmActualizar(id_producto){
-    $.ajax({
-      type:"POST",
-      data:"id_producto="+ id_producto,
-      url: "../conexiones/obtenDatos.php",
-      success:function(r){
-        datos=r;
-        console.log(datos);
-        $('#id_producto').val(datos['id_producto']);
-        $('#nombre').val(datos['nombre']);
-        $('#cantidad').val(datos['cantidad']);
-        $('#precio').val(datos['precio']);
-        $('#tipo').val(datos['tipo']);
-      }
-    });
-  }
-</script>
-<script>
   function confirmar(){
-    Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
+    var $con = confirm("¿Estas Seguro de emilinarlo?");
+  if ($con == true) {
+    return true;
   }
-})
-
+  else
+  {
+    return false;
+  }
   }
 </script>
 
